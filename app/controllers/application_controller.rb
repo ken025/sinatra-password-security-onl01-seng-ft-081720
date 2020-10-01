@@ -34,10 +34,15 @@ end
 
 	post "/login" do
 		#your code here!
-		@user = User.find_by(email: params[:email], password: params[:password])
-    if @user
-      session[:user_id] = @user.id
-	end
+	 user = User.find_by(:username => params[:username])
+  if user
+    
+    redirect "/success"
+  else
+    
+    redirect "/failure"
+  end
+end
 
 	get "/success" do
 		if logged_in?
