@@ -26,6 +26,9 @@ class ApplicationController < Sinatra::Base
 
 	post "/login" do
 		#your code here!
+		@user = User.find_by(email: params[:email], password: params[:password])
+    if @user
+      session[:user_id] = @user.id
 	end
 
 	get "/success" do
